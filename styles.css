@@ -1,0 +1,299 @@
+/* styles.css */
+html { scroll-behavior: smooth; }
+
+:root {
+  --clr-primary: #35434d;
+  --clr-secondary: #ffffff;
+  --clr-accent: #5d5d5d;
+  --clr-light: #f9f9f9;
+  --clr-text: #333;
+  --shadow: rgba(0,0,0,0.1);
+  --ff: 'Montserrat', sans-serif;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff);
+  background: var(--clr-light);
+  color: var(--clr-text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navbar */
+nav {
+  background: var(--clr-primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  opacity: 0.95;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  flex-wrap: wrap;
+}
+.nav-list li {
+  margin: 0 10px;
+}
+.nav-list a {
+  color: var(--clr-secondary);
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+.nav-list a:hover {
+  background: var(--clr-accent);
+  transform: scale(1.05);
+}
+
+/* Hero (fullscreen) */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('https://static.wixstatic.com/media/afbb39_b77b6ef87e1f4c83b0e88c55a328230a~mv2.jpg')
+    center/cover no-repeat;
+  color: var(--clr-secondary);
+  text-align: center;
+  padding: 0 20px;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: .5em;
+  text-shadow: 2px 2px 4px var(--shadow);
+}
+.hero p {
+  font-size: 1.1rem;
+  margin: .3em 0;
+  text-shadow: 1px 1px 3px var(--shadow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 10px 5px;
+  background: var(--clr-accent);
+  color: var(--clr-secondary);
+  border: 2px solid var(--clr-primary);
+  border-radius: 5px;
+  transition: var(--transition);
+}
+.btn:hover {
+  background: var(--clr-primary);
+}
+
+/* Sections */
+section {
+  padding: 60px 0;
+}
+h2 {
+  text-align: center;
+  color: var(--clr-primary);
+  font-size: 2.2rem;
+  position: relative;
+}
+h2::after {
+  content: '';
+  width: 80px;
+  height: 3px;
+  background: var(--clr-accent);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 3px;
+}
+
+/* Section “boxes” styling + pop‑in animation */
+.section-box {
+  background: var(--clr-secondary);
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow);
+
+  /* pop‑in initial state */
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section-box.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.section-box.biography-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.section-box h2 {
+  margin-top: 0;
+}
+.section-box p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* Gallery */
+.gallery-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 20px;
+  scroll-snap-type: x mandatory;
+}
+.gallery-container img {
+  flex: none;
+  height: 300px;
+  scroll-snap-align: center;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+.gallery-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* Reviews */
+.reviews .section-box {
+  display: block; /* ensures wrapper gets box styling */
+  padding: 20px;
+}
+.reviews .review {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.review-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.review p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Method */
+.method .section-box p {
+  margin: 0;
+}
+
+/* Biography (outside section-box it’s flex but we wrap in box too) */
+.biography-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.biography-img {
+  flex: 1 1 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.biography-text {
+  flex: 2 1 300px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Location (make map bigger) */
+#location .section-box {
+  max-width: 100%;
+  padding: 0;
+  margin: 20px 0;
+}
+#location iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* Contact */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contact-form label {
+  font-weight: bold;
+  text-align: left;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.contact-form button {
+  align-self: center;
+}
+.contact-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  background: var(--clr-primary);
+  color: var(--clr-secondary);
+  text-align: center;
+  padding: 20px;
+}
+.social-icons a {
+  margin: 0 10px;
+  font-size: 1.5rem;
+  color: var(--clr-secondary);
+  transition: var(--transition);
+}
+.social-icons a:hover {
+  color: #f1f1f1;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .reviews .review {
+    flex-direction: column;
+    text-align: center;
+  }
+}
